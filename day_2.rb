@@ -34,6 +34,13 @@ class WrappingPaper < ReadInput
       return first_side*2+second_side*2+fird_side*2+smallest_side
   end
 end
+class Ribbon < ReadInput
+  def parse_line(line)
+    array = line.split('x').map { |x| x.to_i }.sort
+    array[0]*2+array[1]*2+array[0]*array[1]*array[2]
+  end
+end
 
 wr = WrappingPaper.new("day_2.txt")
-puts wr.read_file
+ribbon = Ribbon.new("day_2.txt")
+puts ribbon.read_file
