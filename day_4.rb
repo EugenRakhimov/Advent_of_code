@@ -6,7 +6,7 @@ def calculate_hash(number)
   md5.hexdigest 
 end
 def check_hash(hash)
-   if (hash[0,5] == "00000")
+   if (hash[0,6] == "000000")
       return true
     else
       return false
