@@ -37,7 +37,7 @@ class CalcMinDistance
   def initialize
     rd = ReadDistance.new("day_9.txt")
     @distances = rd.read_file
-    @min_distance = 40000
+    @max_distance = 0
     @cities = cities_list
   end
   def cities_list
@@ -60,8 +60,8 @@ class CalcMinDistance
     end
   end
   def check_direction(visited_cities = [], current_distance=0, last_city="")
-    return @min_distance = current_distance if ((visited_cities.count == @cities.count) && (current_distance < @min_distance))
-    return @min_distance if (visited_cities.count == @cities.count) 
+    return @max_distance = current_distance if ((visited_cities.count == @cities.count) && (current_distance > @max_distance))
+    return @max_distance if (visited_cities.count == @cities.count) 
      @cities.each do |city|
 
       if !visited_cities.include?(city)
@@ -73,11 +73,11 @@ class CalcMinDistance
      end
     
   end
-  def min_distance
-    @min_distance
+  def max_distance
+    @max_distance
   end
 end
 cMinDistance = CalcMinDistance.new
 p cMinDistance.check_direction
-p cMinDistance.min_distance
+p cMinDistance.max_distance
 
