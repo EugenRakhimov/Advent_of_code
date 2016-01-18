@@ -48,9 +48,15 @@ class CalcMinDistance
      end
      cities
   end
+  def check_pair(distance, city1, city2)
+    return true if ((distance.city1 == city1) && (distance.city2 == city2))
+    return true if ((distance.city1 == city2) && (distance.city2 == city1))
+    return false
+  end  
   def get_distance(city1, city2)
-    @distance.each do |distance|
-      return distance.distance
+    return 0 if city2 == ""
+    @distances.each do |distance|
+      return distance.distance if (check_pair(distance, city1, city2))
     end
   end
   def check_direction(visited_cities = [], current_distance=0, last_city="")
@@ -64,11 +70,14 @@ class CalcMinDistance
         new_distance = current_distance+ get_distance(city, last_city)
         check_direction(to_visit, new_distance, city) 
       end
-
      end
     
+  end
+  def min_distance
+    @min_distance
   end
 end
 cMinDistance = CalcMinDistance.new
 p cMinDistance.check_direction
+p cMinDistance.min_distance
 
