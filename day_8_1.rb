@@ -34,17 +34,19 @@ class StringCounter <ReadInput
     # s = s.gsub("")
   end
   def add_escapes(line)
-    
+     line.gsub(/(\\|")/, '12')
   end
 
   def parse_line(line)
     
     # puts "string1: #{eval("puts  + @string1 + ")}"
-    line2 =eval(line+".length")
-    eval("puts "+line)
+    line2 =add_escapes(line)
+    # eval("puts "+line)
     puts line.length
+    puts line2.length
+    puts line
     puts line2
-    return (line.length - line2)
+    return (line2.length+2 - line.length)
   end
 end
 
