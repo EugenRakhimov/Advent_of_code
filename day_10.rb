@@ -28,9 +28,9 @@ class LookAndSay
 
 end
 ls = LookAndSay.new("1113222113")
-40.times do
+50.times do
   ls.look_and_say
-  p ls.current_sequence
+  # p ls.current_sequence
 end
 p ls.current_sequence.length
 
