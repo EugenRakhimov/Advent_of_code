@@ -8,8 +8,8 @@ class SantaPassword
     @current_pass.join
   end
   
-  def find_next_pass
-    new_pass = Array.new(@current_pass)
+  def find_next_pass    
+    new_pass = increase_by_1(@current_pass)
     while (!check_pass(new_pass)) do
       new_pass = increase_by_1(new_pass)
     end
@@ -19,11 +19,13 @@ class SantaPassword
   def increase_by_1(pass)
     new_pass = Array.new(pass.reverse)    
     for i in 0..7 do
-      if (new_pass[i] !='z')
+      if (new_pass[i] == 'z')
+        # p  new_pass[i]
+         new_pass[i] = 'a'
+      else 
+        # p i       
         new_pass[i] = (new_pass[i].ord+1).chr       
         return new_pass.reverse
-      else       
-        new_pass[i] = 'a'
       end 
     end
     new_pass.reverse
@@ -49,7 +51,7 @@ class SantaPassword
     return false
   end
   def check_pass(pass)
-    return false if (pass.include?'i')||(pass.include?'j')||(pass.include?'l')
+    return false if (pass.include?'i')||(pass.include?'o')||(pass.include?'l')
     return false if !has_sequence(pass)
     return false if !has_two_pairs(pass)
     return true
@@ -57,9 +59,7 @@ class SantaPassword
 
 end
 
-sp = SantaPassword.new('ghijklmn')
+sp = SantaPassword.new('hxbxwxba')
+sp.find_next_pass
 sp.find_next_pass
 p sp.current_pass
-# p sp.increase_by_1('aaaaaaaa'.chars)
-# p sp.check_pass('hijklmmn'.chars)
-# p sp.has_two_pairs('abbcegbb'.chars)
