@@ -31,6 +31,7 @@ class JsonFile < ReadInput
   end
   def get_sum(current_obj)
    sum = 0
+    return 0 if ((current_obj.is_a? Hash)&& (current_obj.has_value?"red"))
    for_sum = current_obj.to_a.flatten
    for_sum.each do |element|
     if element.is_a? Enumerable
@@ -38,7 +39,7 @@ class JsonFile < ReadInput
     else
       sum += element.to_i  
     end
-    
+
    end
     sum
   end
